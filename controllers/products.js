@@ -5,9 +5,9 @@ import Product from '../models/products'
 //     {id:2,name:"Product 2"}
 // ]
 
-export const listProduct = (request,response)=>{
+export const listProduct = async (request,response)=>{
     try{
-        const product = Product.find().exec()
+        const product = await Product.find().exec()
         response.json(product)
         // response.json(products)
     }catch(error){
@@ -38,6 +38,10 @@ export const deleteProduct = async (request,response)=>{
 }
     
 }
-export const updateProduct = (request,response)=>{
-    response.json(products.map(item => item.id === +request.params.id? request.body:item))
+export const updateProduct = async (request,response)=>{
+    try {
+        const product = await products.findOneAndUpdate({_id:request.params.id}, request.body)
+    } catch (error) {
+        response.status(400).json({message:"ko sửa được"})
+    }
 }
