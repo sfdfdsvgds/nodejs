@@ -5,7 +5,7 @@ import Home from "./routes/home";
 import Products from "./routes/products";
 import mongoose from "mongoose";
 const app = express();
-mongoose.connect('mongodb://localhost:27017/nodejs');
+mongoose.connect('mongodb://localhost:27017/web16308');
 
 app.use(Home);
 app.use("/api",checkAuth,Products);

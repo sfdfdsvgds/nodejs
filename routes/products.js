@@ -1,17 +1,12 @@
 import express from "express"
-import { deleteProduct, getProduct, getProductDetail, postProduct, putProduct } from "../controllers/product";
+import { createProduct, deleteProduct, listProduct, listProductDetail, updateProduct } from "../controllers/products";
 const router = express.Router();
 
 
-
-router.get('/products', getProduct);
-router.get('/products/:id', getProductDetail);
-// thêm
-router.post('/products', postProduct);
-// xoa 
-router.delete('/products/:id', deleteProduct);
-// sửa
-router.put('/products/:id', putProduct);
-
+router.get('/products',listProduct)
+router.get('/products/:id',listProductDetail)
+router.post('/products', createProduct)
+router.delete('/products/:id',deleteProduct)
+router.put('/products/:id',updateProduct)
 
 export default router;
