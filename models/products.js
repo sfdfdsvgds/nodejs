@@ -9,6 +9,8 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:true
     }
+    
+    
 })
 
 export default mongoose.model('Product',productSchema)
