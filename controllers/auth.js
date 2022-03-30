@@ -13,10 +13,32 @@ try {
         user:{
             _id:user._id,
             email:user.email,
-            name:user.name
+            name:user.name,
+            password:user.password
         }
     })
 } catch (error) {
     console.log(error);
 }
+}
+export const signin = async (request,response)=>{
+    const {email,password} = request.body
+    const user = await User.findOne({email}).exec()
+    if(!user){
+        return response.status(400).json({
+            message:"User khong ton tai"
+        })
+    }
+    if(!user.authenticate(password)){
+        return response.status(400).json({
+            message:"Mat khau khong dung"
+        })
+    }
+    response.json({
+        user:{
+            _id:user._id,
+            email:user.email,
+            name:user.name
+        }
+    })
 }
